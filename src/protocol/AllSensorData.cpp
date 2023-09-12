@@ -10,39 +10,26 @@
 
 #include "AllSensorData.hpp"
 
-AllSensorData::AllSensorData(const SensorData& sensor1, const SensorData& sensor2, const SensorData& sensor3, const SensorData& sensor4)
-: m_Sensor1(sensor1),
-  m_Sensor2(sensor2),
-  m_Sensor3(sensor3),
-  m_Sensor4(sensor4)
+AllSensorData::AllSensorData(const SensorData& sensor1, 
+                             const SensorData& sensor2, 
+                             const SensorData& sensor3, 
+                             const SensorData& sensor4,
+                             const SensorData& sensor5)
+: m_SensorData()
 {
+   m_SensorData[sensor1.getDevice()] = sensor1;
+   m_SensorData[sensor2.getDevice()] = sensor2;
+   m_SensorData[sensor3.getDevice()] = sensor3;
+   m_SensorData[sensor4.getDevice()] = sensor4;
+   m_SensorData[sensor5.getDevice()] = sensor5;
 }
 
-void AllSensorData::setSensorData(const uint8_t index, const SensorData sensor)
+void AllSensorData::setSensorData(const Device device, const SensorData& data)
 {
-   switch (index)
-   {
-      case 1: m_Sensor1 = sensor; break;
-      case 2: m_Sensor2 = sensor; break;
-      case 3: m_Sensor3 = sensor; break;
-      case 4: m_Sensor4 = sensor; break;
-      default:
-         break;
-   }
+   m_SensorData[device] = data;
 }
 
-SensorData AllSensorData::getSensorData(const uint8_t index)
+SensorData AllSensorData::getSensorData(const Device device)
 {
-   SensorData tmp;
-   switch (index)
-   {
-      case 1: tmp = m_Sensor1; break;
-      case 2: tmp = m_Sensor2; break;
-      case 3: tmp = m_Sensor3; break;
-      case 4: tmp = m_Sensor4; break;
-      default:
-         break;
-   }
-
-   return tmp;
+   return m_SensorData.find(device)->second;
 }

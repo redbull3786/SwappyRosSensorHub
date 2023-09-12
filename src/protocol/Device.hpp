@@ -19,7 +19,8 @@ enum class Device : uint8_t
     UltraSonnicSenorMiddle = 0x01,
     UltraSonnicSenorRight = 0x02,
     RadarSensor = 0x03,
-    All = 0x04
+    TemperatureSensor = 0x04,
+    All = 0x05
 };
 
 #endif // - PROTOCOL_DEVICE_HPP

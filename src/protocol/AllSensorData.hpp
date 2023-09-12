@@ -9,6 +9,7 @@
  ***********************************************************/
 
 #include <inttypes.h>
+#include <map>
 #include "Device.hpp"
 #include "SensorData.hpp"
 
@@ -16,16 +17,17 @@ class AllSensorData
 {
 public:
 	AllSensorData() = default;
-	AllSensorData(const SensorData& sensor1, const SensorData& sensor2, const SensorData& sensor3, const SensorData& sensor4);
+	AllSensorData(const SensorData& sensor1, 
+			 	  const SensorData& sensor2, 
+				  const SensorData& sensor3, 
+				  const SensorData& sensor4,
+				  const SensorData& sensor5);
 	~AllSensorData() = default;
 
-	void setSensorData(const uint8_t index, const SensorData sensor);
+	void setSensorData(const Device device, const SensorData& data);
 
-	SensorData getSensorData(const uint8_t index);
+	SensorData getSensorData(const Device device);
 
 private:
-	SensorData m_Sensor1;
-	SensorData m_Sensor2;
-	SensorData m_Sensor3;
-	SensorData m_Sensor4;
+	std::map<Device, SensorData> m_SensorData;
 };
