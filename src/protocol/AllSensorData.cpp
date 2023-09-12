@@ -10,11 +10,11 @@
 
 #include "AllSensorData.hpp"
 
-AllSensorData::AllSensorData(const SensorData& sensor1, 
-                             const SensorData& sensor2, 
-                             const SensorData& sensor3, 
-                             const SensorData& sensor4,
-                             const SensorData& sensor5)
+AllSensorData::AllSensorData(SensorData& sensor1, 
+                            SensorData& sensor2, 
+                            SensorData& sensor3, 
+                            SensorData& sensor4,
+                            SensorData& sensor5)
 : m_SensorData()
 {
    m_SensorData[sensor1.getDevice()] = sensor1;

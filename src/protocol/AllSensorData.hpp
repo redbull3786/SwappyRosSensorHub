@@ -8,6 +8,9 @@
  *  
  ***********************************************************/
 
+#ifndef PROTOCOL_ALL_SENSOR_DATA_HPP
+#define PROTOCOL_ALL_SENSOR_DATA_HPP
+
 #include <inttypes.h>
 #include <map>
 #include "Device.hpp"
@@ -17,11 +20,11 @@ class AllSensorData
 {
 public:
 	AllSensorData() = default;
-	AllSensorData(const SensorData& sensor1, 
-			 	  const SensorData& sensor2, 
-				  const SensorData& sensor3, 
-				  const SensorData& sensor4,
-				  const SensorData& sensor5);
+	AllSensorData(SensorData& sensor1, 
+			 	  SensorData& sensor2, 
+				  SensorData& sensor3, 
+				  SensorData& sensor4,
+			      SensorData& sensor5);
 	~AllSensorData() = default;
 
 	void setSensorData(const Device device, const SensorData& data);
@@ -31,3 +34,5 @@ public:
 private:
 	std::map<Device, SensorData> m_SensorData;
 };
+
+#endif // - PROTOCOL_ALL_SENSOR_DATA_HPP

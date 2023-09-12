@@ -21,3 +21,14 @@ generate_messages()
 ## Declare a catkin package
 catkin_package()
 
+## Build node and client
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+## Find all Protocol SRC Files
+file (GLOB SRC_FILES 
+    src/protocol/*.hpp
+    src/protocol/*.cpp 
+)
+
+add_executable(node src/node.cpp ${SRC_FILES})
+target_link_libraries(node ${catkin_LIBRARIES})

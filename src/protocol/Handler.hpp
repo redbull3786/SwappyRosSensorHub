@@ -8,17 +8,20 @@
  *  
  ***********************************************************/
 
-#include "Device.hpp"
 #include <inttypes.h>
+#include "Device.hpp"
+#include "SensorData.hpp"
+#include "AllSensorData.hpp"
 
 class Handler
 {
+public:
 	Handler() = default;
 	~Handler() = default;
 
-	getSensorData();
+	SensorData getSensorData();
 
-	getAllSensorData();
+	AllSensorData getAllSensorData();
 
-	calibrateDevice();
+	void calibrateDevice();
 };

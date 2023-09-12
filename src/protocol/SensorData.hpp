@@ -8,6 +8,9 @@
  *  
  ***********************************************************/
 
+#ifndef PROTOCOL_SENSOR_DATA_HPP
+#define PROTOCOL_SENSOR_DATA_HPP
+
 #include <inttypes.h>
 #include "Device.hpp"
 
@@ -28,3 +31,5 @@ private:
 	Device m_Device;
 	uint8_t m_Value;
 };
+
+#endif // - PROTOCOL_SENSOR_DATA_HPP
