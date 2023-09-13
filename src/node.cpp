@@ -12,7 +12,7 @@
  ***********************************************************/
 
 #include "ros/ros.h"
-#include "SwappyRosSensorHub/SensorHubState.h"
+#include "swappy_ros_sensor_hub/SensorHubState.h"
 #include "protocol/Handler.hpp"
 #include "protocol/AllSensorData.hpp"
 
@@ -21,17 +21,21 @@ int main(int argc, char **argv)
    ros::init(argc, argv, "SensorHubNode");
    ros::NodeHandle n;
 
-   ros::Publisher node_pub = n.advertise<SwappyRosSensorHub::SensorHubState>("node", 1000);
+   ros::Publisher node_pub = n.advertise<swappy_ros_sensor_hub::SensorHubState>("node", 1000);
    ros::Rate loop_rate(1); // 1Hz == 1 cycle per second
 
    Handler protocol_handler;
 
    while (ros::ok())
    {
-      SwappyRosSensorHub::SensorHubState msg;
+      swappy_ros_sensor_hub::SensorHubState msg;
 
-      AllSensorData SensorData = protocol_handler.getAllSensorData();
-
+      AllSensorData allSensorData = protocol_handler.getAllSensorData();
+      
+      msg.UltraSonicSensorLeft_cm = allSensorData.getSensorData(Device::UltraSonicSenorLeft).getValue();
+      msg.UltraSonicSensorMiddle_cm = allSensorData.getSensorData(Device::UltraSonicSenorMiddle).getValue();
+      msg.UltraSonicSensorRight_cm = allSensorData.getSensorData(Device::UltraSonicSenorRight).getValue();
+   
       node_pub.publish(msg);
 
       ros::spinOnce();

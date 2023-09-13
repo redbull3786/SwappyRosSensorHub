@@ -19,7 +19,9 @@ add_message_files(DIRECTORY msg FILES
 generate_messages()
 
 ## Declare a catkin package
-catkin_package()
+catkin_package(
+    CATKIN_DEPENDS message_runtime
+)
 
 ## Build node and client
 include_directories(include ${catkin_INCLUDE_DIRS})
