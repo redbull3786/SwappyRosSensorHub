@@ -1,12 +1,16 @@
 # Sensor Hub state
 
+#Constants:
+uint8 ACTIVITY_NOT_DETECTED=0
+uint8 ACTIVITY_DETECTED=1
+
 #Ultrasonic Sensors:
-uint8 UltraSonicSensorLeft_cm
-uint8 UltraSonicSensorMiddle_cm
-uint8 UltraSonicSensorRight_cm
+float32 UltraSonicSensorLeft_cm
+float32 UltraSonicSensorMiddle_cm
+float32 UltraSonicSensorRight_cm
 
 #Radar Sensor:
 uint8 RadarSensorAktivity
 
 #Temperature Sensor:
-uint8 Temperature_celsius
+float32 Temperature_celsius

@@ -10,7 +10,7 @@
 
 #include "SensorData.hpp"
 
-SensorData::SensorData(const Device device, const uint8_t value)
+SensorData::SensorData(const Device device, const float value)
 : m_Device(device),
   m_Value(value)
 {
@@ -26,12 +26,12 @@ void SensorData::setDevice(const Device device)
     m_Device = device;
 }
 
-uint8_t SensorData::getValue()
+float SensorData::getValue()
 {
     return m_Value;
 }
 
-void SensorData::setValue(const uint8_t value)
+void SensorData::setValue(const float value)
 {
     m_Value = value;
 }

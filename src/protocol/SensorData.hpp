@@ -18,18 +18,18 @@ class SensorData
 {
 public:
 	SensorData() = default;
-	SensorData(const Device device, const uint8_t value);
+	SensorData(const Device device, const float value);
 	~SensorData() = default;
 
 	Device getDevice();
 	void setDevice(const Device device);
 
-	uint8_t getValue();
-	void setValue(const uint8_t value);
+	float getValue();
+	void setValue(const float value);
 
 private:
 	Device m_Device;
-	uint8_t m_Value;
+	float m_Value;
 };
 
 #endif // - PROTOCOL_SENSOR_DATA_HPP

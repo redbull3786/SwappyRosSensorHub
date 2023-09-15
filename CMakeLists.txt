@@ -6,7 +6,8 @@ add_compile_options(-std=c++11)
 
 ## Find catkin and any catkin packages
 find_package(catkin REQUIRED COMPONENTS 
-    roscpp 
+    roscpp
+    rosconsole
     message_generation
 )
 
@@ -26,10 +27,10 @@ catkin_package(
 ## Build node and client
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-## Find all Protocol SRC Files
-file (GLOB SRC_FILES 
-    src/protocol/*.hpp
-    src/protocol/*.cpp 
+## Find all SRC Files
+file (GLOB SRC_FILES
+    src/protocol/*.[ch]pp
+    src/configuration/*.[ch]pp
 )
 
 add_executable(node src/node.cpp ${SRC_FILES})
