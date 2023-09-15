@@ -17,7 +17,6 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <ros/rosco
 
 Handler::Handler(const SpiConfiguration& spiConfig)
 : m_SpiConfiguration(spiConfig),
