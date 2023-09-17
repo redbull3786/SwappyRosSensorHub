@@ -8,6 +8,11 @@
  * 
  * Description:
  *   Implements a publisher to push all Sensor Data to ROS Master
+ * 
+ *   Arguments:
+ *   - NodeName=<Name>
+ *   - PublisherNode=<Name_Of_Published_Element>
+ *   - SpiDevice=<SpiDevice>
  *  
  ***********************************************************/
 
@@ -18,18 +23,46 @@
 #include "protocol/RadarActivity.hpp"
 #include "configuration/NodeConfiguration.hpp"
 #include <ros/console.h>
+#include "Arguments.hpp"
 
+
+Arguemnts getKeyValue(const std::string& arg)
+{
+   Arguemnts tmp;
+
+   size_t pos = arg.find("=");
+   tmp.Key = arg.substr(0, pos);
+   tmp.Value = arg.substr((pos + 1), (arg.size() - (pos + 1)));
+
+   return tmp;
+}
 
 NodeConfiguration parseArguments(int argc, char **argv)
 {
    NodeConfiguration tmp;
-   tmp.NodeName = "SensorHubNodeFront";
-   tmp.PublisherName = "frontSensors";
 
-   tmp.SpiConfig.SpiDevice = "/dev/spi/spi1.0";
-   tmp.SpiConfig.SpiSpeed_Hz = 17000000;
-   tmp.SpiConfig.CsChange = 1;
-   tmp.SpiConfig.BitsPerWord = 8;
+   // parse elements:
+   for (int i = 1; i < argc; i++)
+   {
+      Arguemnts argument = getKeyValue(std::string(argv[i]));
+
+      if (argument.Key == "NodeName")
+      {
+         tmp.NodeName = argument.Value; //"SensorHubNodeFront";
+      }
+      else if (argument.Key == "PublisherNode")
+      {
+         tmp.PublisherName = argument.Value; //"frontSensors";
+      }
+      else if (argument.Key == "SpiDevice")
+      {
+         tmp.SpiConfig.SpiDevice = argument.Value; //"/dev/spi/spi1.0"
+         tmp.SpiConfig.SpiSpeed_Hz = 17000000;
+         tmp.SpiConfig.CsChange = 1;
+         tmp.SpiConfig.BitsPerWord = 8;
+      }
+   }
+
    return tmp;   
 }
 

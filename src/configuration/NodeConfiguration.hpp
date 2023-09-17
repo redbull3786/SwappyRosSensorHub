@@ -1,6 +1,6 @@
 /***********************************************************
  * 
- * Definition of NodeSpiConfiguration.hpp
+ * Definition of NodeConfiguration.hpp
  * 
  * Date: 15.09.2023
  * Version: 1.0
@@ -16,8 +16,13 @@
 
 struct NodeConfiguration
 {
+   // Name of the node 
    std::string NodeName;
+
+   // Name of published element
    std::string PublisherName;
+
+   // Configuration of the SPI device
    SpiConfiguration SpiConfig;
 };
 

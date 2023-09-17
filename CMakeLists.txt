@@ -33,5 +33,10 @@ file (GLOB SRC_FILES
     src/configuration/*.[ch]pp
 )
 
+## Node
 add_executable(node src/node.cpp ${SRC_FILES})
 target_link_libraries(node ${catkin_LIBRARIES})
+
+## Client
+add_executable(client src/client.cpp ${SRC_FILES})
+target_link_libraries(client ${catkin_LIBRARIES})
