@@ -22,14 +22,14 @@ public:
 	Handler(const SpiConfiguration& spiConfig);
 	~Handler();
 
-	SensorData getSensorData();
+	SensorData getSensorData(const Device device);
 
 	AllSensorData getAllSensorData();
 
-	void calibrateDevice();
+	void calibrateDevice(const Device device);
 
 private:
-	static const uint8_t S_MAX_BUFFER_SIZE = 255;
+	static const uint8_t S_MAX_BUFFER_SIZE = 31;
 
     SpiConfiguration m_SpiConfiguration;
 	int m_FileDescriptor;
@@ -42,10 +42,12 @@ private:
 	ReturnState deinit();
 
     // Commands:
+	void prepairMemory();
+
 	void createGetSensorDataRequest(const Device device);
 	SensorData parseGetSendorDataResponse();
 	void createGetAllSensorDataRequest();
 	AllSensorData parseGetAllSensorDataResponse();
 	void createCalibrateDeviceRequest(const Device device);
-	void parseCalibrateDeviceResponse(); 
+	ReturnState parseCalibrateDeviceResponse(); 
 };

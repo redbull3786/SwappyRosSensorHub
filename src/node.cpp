@@ -17,6 +17,7 @@
 #include "protocol/AllSensorData.hpp"
 #include "protocol/RadarActivity.hpp"
 #include "configuration/NodeConfiguration.hpp"
+#include <ros/console.h>
 
 
 NodeConfiguration parseArguments(int argc, char **argv)
@@ -34,7 +35,13 @@ NodeConfiguration parseArguments(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
+   // This needs to happen before we start fooling around with logger levels.  Otherwise the level we set may be overwritten by
+   // a configuration file
+   ROSCONSOLE_AUTOINIT;
+
    NodeConfiguration config = parseArguments(argc, argv);
+
+   ROS_INFO("Start Sensor Publisher: %s", config.NodeName.c_str());
 
    ros::init(argc, argv, config.NodeName);
    ros::NodeHandle n;
@@ -47,6 +54,7 @@ int main(int argc, char **argv)
    while (ros::ok())
    {
       swappy_ros_sensor_hub::SensorHubState msg;
+      uint32_t messageCount = 0;
 
       AllSensorData allSensorData = protocol_handler.getAllSensorData();
       
@@ -57,6 +65,12 @@ int main(int argc, char **argv)
       msg.Temperature_celsius = 35.0;
    
       node_pub.publish(msg);
+
+      // Debug Log:
+      ROS_DEBUG("publish Message [Count: %d]: {Left[cm]: %f Middle[cm]: %f Right[cm]: %f Activity[Detect]: %d Temperature[Celcius]: %f}", 
+                messageCount, msg.UltraSonicSensorLeft_cm, msg.UltraSonicSensorMiddle_cm, msg.UltraSonicSensorRight_cm,
+                msg.RadarSensorAktivity, msg.Temperature_celsius);
+      messageCount++;
 
       ros::spinOnce();
 
