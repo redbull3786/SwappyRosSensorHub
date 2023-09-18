@@ -41,11 +41,11 @@ ClientConfiguration parseArguments(int argc, char **argv)
    {
       Arguemnts argument = getKeyValue(std::string(argv[i]));
 
-      if (argument.Key == "NodeName")
+      if (argument.Key == std::string("NodeName"))
       {
          tmp.NodeName = argument.Value; //"SensorHubClientFront";
       }
-      else if (argument.Key == "SubscriberName")
+      else if (argument.Key == std::string("SubscriberName"))
       {
          tmp.SubscriberName = argument.Value; //"frontSensors";
       }

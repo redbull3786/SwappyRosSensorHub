@@ -46,15 +46,15 @@ NodeConfiguration parseArguments(int argc, char **argv)
    {
       Arguemnts argument = getKeyValue(std::string(argv[i]));
 
-      if (argument.Key == "NodeName")
+      if (argument.Key == std::string("NodeName"))
       {
          tmp.NodeName = argument.Value; //"SensorHubNodeFront";
       }
-      else if (argument.Key == "PublisherNode")
+      else if (argument.Key == std::string("PublisherNode"))
       {
          tmp.PublisherName = argument.Value; //"frontSensors";
       }
-      else if (argument.Key == "SpiDevice")
+      else if (argument.Key == std::string("SpiDevice"))
       {
          tmp.SpiConfig.SpiDevice = argument.Value; //"/dev/spi/spi1.0"
          tmp.SpiConfig.SpiSpeed_Hz = 17000000;
