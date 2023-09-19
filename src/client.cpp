@@ -56,7 +56,10 @@ ClientConfiguration parseArguments(int argc, char **argv)
 
 void sensorCallback(const swappy_ros_sensor_hub::SensorHubState::ConstPtr& msg)
 {
-  
+   // Debug Log:
+   ROS_DEBUG("CallBack Message: {Left[cm]: %f Middle[cm]: %f Right[cm]: %f Activity[Detect]: %d Temperature[Celcius]: %f}", 
+      msg->UltraSonicSensorLeft_cm, msg->UltraSonicSensorMiddle_cm, msg->UltraSonicSensorRight_cm,
+      msg->RadarSensorAktivity, msg->Temperature_celsius);
 }
 
 int main(int argc, char **argv)

@@ -101,8 +101,8 @@ int main(int argc, char **argv)
 
       // Debug Log:
       ROS_DEBUG("publish Message [Count: %d]: {Left[cm]: %f Middle[cm]: %f Right[cm]: %f Activity[Detect]: %d Temperature[Celcius]: %f}", 
-                messageCount, msg.UltraSonicSensorLeft_cm, msg.UltraSonicSensorMiddle_cm, msg.UltraSonicSensorRight_cm,
-                msg.RadarSensorAktivity, msg.Temperature_celsius);
+            messageCount, msg.UltraSonicSensorLeft_cm, msg.UltraSonicSensorMiddle_cm, msg.UltraSonicSensorRight_cm,
+            msg.RadarSensorAktivity, msg.Temperature_celsius);
       messageCount++;
 
       ros::spinOnce();
